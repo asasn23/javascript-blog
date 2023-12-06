@@ -6,7 +6,7 @@ const templates = {
   tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
   tagCloudLink: Handlebars.compile(document.querySelector('#template-tagcloud-link').innerHTML),
   authorCloudLink: Handlebars.compile(document.querySelector('#template-authorcloud-link').innerHTML)
-}
+};
 
 const opts = {
   ArticleSelector: '.post',
@@ -18,7 +18,7 @@ const opts = {
   TagsListSelector: '.tags',
   CloudClassCount: 5,
   CloudClassPrefix: 'tag-size-'
-}
+};
 
 function titleClickHandler(event){
   event.preventDefault();
@@ -32,10 +32,10 @@ function titleClickHandler(event){
   for(let activeArticle of activeArticles){
     activeArticle.classList.remove('active');
   }
-  const hrefAtribute = clickedElement.getAttribute("href");
+  const hrefAtribute = clickedElement.getAttribute('href');
   const allArticles = document.querySelectorAll('.posts article');
   for(let singleArticle of allArticles){
-    if (("#" + singleArticle.getAttribute("id")) == hrefAtribute) {
+    if (('#' + singleArticle.getAttribute('id')) == hrefAtribute) {
       singleArticle.classList.add('active');
     }
   }
@@ -50,7 +50,7 @@ function generateTitleLinks(customSelector = ''){
   let html = '';
 
   for (let article of articles) {
-    const articleId = article.getAttribute("id");
+    const articleId = article.getAttribute('id');
     const articleTitle = article.querySelector(opts.TitleSelector).innerHTML;
     const linkHTMLData = {id: articleId, title: articleTitle};
     const linkHTML = templates.articleLink(linkHTMLData);
@@ -98,7 +98,7 @@ function generateTags(){
     const tagsWrapper = article.querySelector(opts.ArticleTagsSelector);
     tagsWrapper.innerHTML = '';
     let html = '';
-    const articleTags = article.getAttribute("data-tags");
+    const articleTags = article.getAttribute('data-tags');
     const articleTagsArray = articleTags.split(' ');
     for (let singleTag of articleTagsArray) {
       const linkHTMLData = {id: singleTag, title: singleTag};
@@ -183,7 +183,7 @@ function generateAuthors(){
   for (let article of articles) {
     const authorWrapper = article.querySelector(opts.ArticleAuthorsSelector);
     authorWrapper.innerHTML = '';
-    const articleAuthor = article.getAttribute("data-author");
+    const articleAuthor = article.getAttribute('data-author');
     const linkHTMLData = {id: articleAuthor, title: articleAuthor};
     const linkHtml = templates.authorLink(linkHTMLData);
     authorWrapper.innerHTML = linkHtml;
